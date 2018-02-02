@@ -49,7 +49,7 @@ public class OcrController extends BaseController {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	@ApiOperation(value="传入视频或图片文件流，解析并返回内容")
+	@ApiOperation(value="传入视频或图片文件流，解析并返回内容", notes="返回json格式{\"summary\":\"You have to stop taking people at their wordl \",\"img\":\"QQ图片20140430203614.jpg\",\"isVideo\":false,\"text\":\"   别再信别人的了 !  You have to stop taking people at their wordl     \",\"keyword\":\"stop people You taking wordl \"}")
 	@RequestMapping(value="/", method=RequestMethod.POST, produces="application/json;charset=utf-8")
 	@ResponseBody
 	@Interval
