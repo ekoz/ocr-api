@@ -65,7 +65,11 @@ public class OcrServiceImpl implements OcrService {
 		}else{
 			text = "仅支持图片和视频文件";
 		}
+		content = content.trim();
 		//TODO content 内容自动纠正，以及移除生僻字
+		//System.out.println(content);
+		content = content.replaceAll("[\\?!，。？！一′'\\\\_\\[\\]]", "");
+		//System.out.println(content);
 		
 		List<String> summaryList = HanLP.extractSummary(content, 3);
 		List<String> keywordList = HanLP.extractKeyword(content, 5);
