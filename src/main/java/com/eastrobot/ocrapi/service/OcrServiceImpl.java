@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
+import com.eastrobot.ocrapi.util.ChineseUtil;
 import com.eastrobot.ocrapi.util.FileExtensionUtils;
 import com.eastrobot.ocrapi.util.ListUtils;
 import com.hankcs.hanlp.HanLP;
@@ -67,12 +68,13 @@ public class OcrServiceImpl implements OcrService {
 		}
 		content = content.trim();
 		//TODO content 内容自动纠正，以及移除生僻字
-		//System.out.println(content);
-		content = content.replaceAll("[\\?!，。？！一′'\\\\_\\[\\]]", "");
-		//System.out.println(content);
+		logger.debug(content);
+//		content = content.replaceAll("[\\?!，。？！一′'\\\\_\\[\\]]", "");
+		text = ChineseUtil.removeMessy(content);
+		logger.debug(text);
 		
-		List<String> summaryList = HanLP.extractSummary(content, 3);
-		List<String> keywordList = HanLP.extractKeyword(content, 5);
+		List<String> summaryList = HanLP.extractSummary(text, 3);
+		List<String> keywordList = HanLP.extractKeyword(text, 5);
 		json.put("summary", ListUtils.toString(summaryList));
 		json.put("keyword", ListUtils.toString(keywordList));
 		json.put("text", text);

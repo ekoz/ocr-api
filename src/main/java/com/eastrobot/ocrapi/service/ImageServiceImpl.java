@@ -65,17 +65,17 @@ public class ImageServiceImpl implements ImageService {
 					Process process = null;
 					if (OcrApiUtils.isLinux()){
 						commandLines.add("tesseract");
-						commandLines.add(inputPath);
-						commandLines.add(outputPath);
-						commandLines.add("-l");
-						commandLines.add("chi_sim");
 					}else{
 						commandLines.add(TESSERACT_PATH + "/tesseract"); //字符串拼接存在路径空格的问题 @Also See ProcessBuilder
-						commandLines.add(inputPath);
-						commandLines.add(outputPath);
-						commandLines.add("-l");
-						commandLines.add("chi_sim");
 					}
+					commandLines.add(inputPath);
+					commandLines.add(outputPath);
+					commandLines.add("-l");
+					commandLines.add("chi_sim");
+					commandLines.add("--psm");
+					commandLines.add("3");
+					commandLines.add("--oem");
+					commandLines.add("2");
 					process = Runtime.getRuntime().exec(commandLines.toArray(new String[commandLines.size()]));
 					
 					OcrApiUtils.loadStream(process.getInputStream());

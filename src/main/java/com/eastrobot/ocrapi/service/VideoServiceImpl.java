@@ -109,19 +109,15 @@ public class VideoServiceImpl implements VideoService {
 					}
 					if (OcrApiUtils.isLinux()){
 						commandLines.add("ffmpeg"); //字符串拼接存在路径空格的问题 @Also See ProcessBuilder
-						commandLines.add("-i");
-						commandLines.add(videoPath);
-						commandLines.add("-r");
-						commandLines.add(String.valueOf(frameRateString));
-						commandLines.add(folder + "/%003d.png");
+						
 					}else{
 						commandLines.add(FFMPEG_PATH + "/ffmpeg.exe"); //字符串拼接存在路径空格的问题 @Also See ProcessBuilder
-						commandLines.add("-i");
-						commandLines.add(videoPath);
-						commandLines.add("-r");
-						commandLines.add(String.valueOf(frameRateString));
-						commandLines.add(folder + "/%003d.png");
 					}
+					commandLines.add("-i");
+					commandLines.add(videoPath);
+					commandLines.add("-r");
+					commandLines.add(String.valueOf(frameRateString));
+					commandLines.add(folder + "/%003d.png");
 					process = Runtime.getRuntime().exec(commandLines.toArray(new String[commandLines.size()]));
 					OcrApiUtils.loadStream(process.getInputStream());
 					OcrApiUtils.loadStream(process.getErrorStream());
