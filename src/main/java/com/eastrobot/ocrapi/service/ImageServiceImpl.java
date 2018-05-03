@@ -72,10 +72,10 @@ public class ImageServiceImpl implements ImageService {
 					commandLines.add(outputPath);
 					commandLines.add("-l");
 					commandLines.add("chi_sim");
-					commandLines.add("--psm");
-					commandLines.add("3");
-					commandLines.add("--oem");
-					commandLines.add("2");
+//					commandLines.add("--psm");
+//					commandLines.add("3");
+//					commandLines.add("--oem");
+//					commandLines.add("2");
 					process = Runtime.getRuntime().exec(commandLines.toArray(new String[commandLines.size()]));
 					
 					OcrApiUtils.loadStream(process.getInputStream());
