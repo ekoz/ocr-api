@@ -38,7 +38,7 @@ public class OcrControllerTests {
         try {
             HttpPost httppost = new HttpPost("http://localhost:8010/ocr-api/");
 
-            FileBody bin = new FileBody(new File("E:\\OCR\\2233373112.jpg"));
+            FileBody bin = new FileBody(new File("E:\\AI\\OCR\\demo\\001.jpg"));
             StringBody comment = new StringBody("A binary file of some kind", ContentType.TEXT_PLAIN);
 
             HttpEntity reqEntity = MultipartEntityBuilder.create()
