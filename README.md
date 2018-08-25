@@ -35,3 +35,5 @@
 
 ### demo
 [Demo](http://101.132.171.147:81/ocr-api/demo)
+
+![Demo](src/main/resources/static/demo.png)
